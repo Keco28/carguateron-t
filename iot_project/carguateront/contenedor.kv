@@ -1,0 +1,90 @@
+<IoT>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [10, 50, 10, 50]
+        spacing: 10
+
+        canvas.before:
+            Color:
+                rgba: 231/255, 237/255, 222/255, 1  # Set the background color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+            Color:
+                rgba: 1, 1, 1, 1  # Set the color for the image
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'planticabajo.png'
+                
+                
+        Image:
+            id: uploaded_image
+            size_hint_y: 0.3
+
+        Button:
+            text: 'Subir Imagen de la Plantica'
+            size_hint_y: None
+            size_hint_x: 0.5
+            pos_hint: {'center_x': 0.5}
+            height: '50sp'
+            on_press: root.uploadImage()
+            background_color: 28/255, 71/255, 35/255, 1
+            color: 231/255, 237/255, 222/255, 1
+
+        Label:
+            text: 'Información de la plantica'
+            font_size: '20sp'
+            size_hint_y: None
+            height: self.texture_size[1]
+            color: 34/255, 71/255, 34/255, 1
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '40sp'
+            color: 34/255, 71/255, 34/255, 1
+
+            Label:
+                text: 'Temperatura:'
+                color: 34/255, 71/255, 34/255, 1
+            Label:
+                text: str(root.temperature) + '°C'
+                color: 34/255, 71/255, 34/255, 1 if root.temperature <= 32 else (1, 0, 0, 1)
+
+        BoxLayout:  
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '40sp'
+            color: 34/255, 71/255, 34/255, 1
+
+            Label:
+                text: 'Humedad:'
+                color: 34/255, 71/255, 34/255, 1
+            Label:
+                text: str(root.humidity) + '%'
+                color: 34/255, 71/255, 34/255, 1
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '40sp'
+            color: 34/255, 71/255, 34/255, 1
+
+            Label:
+                text: 'Nivel del Agua:'
+                color: 34/255, 71/255, 34/255, 1
+            Label:
+                text: str(root.water_level)
+                color: (1, 0, 0, 1) if root.water_level < 600 else (34/255, 71/255, 34/255, 1)
+
+        Button:
+            text: 'Regar Plantica'
+            size_hint_y: None
+            size_hint_x: 0.5
+            pos_hint: {'center_x': 0.5}
+            height: '50sp'
+            on_press: root.show_confirmation()
+            background_color: 28/255, 71/255, 35/255, 1
+            color: 231/255, 237/255, 222/255, 1
+
